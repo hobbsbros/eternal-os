@@ -56,8 +56,9 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
 }
 
 
-// Create a variable for the MPU6050 IMU I2C address
-const MPU6050_ADDR: u8 = 68;
+// Create variables for the MPU6050 IMU registers
+const RESET_REGISTER: u8 = 107;
+const ACCEL_REGISTER: u8 = 59;
 
 
 // Program entry point
@@ -94,12 +95,12 @@ fn main() -> ! {
     let mut raw_bytes: [u8; 6] = [0u8; 6];
 
     loop {
-        mpu6050.read_bytes(MPU6050_ADDR, &mut raw_bytes).core_unwrap();
+        mpu6050.read_bytes(ACCEL_REGISTER, &mut raw_bytes).core_unwrap();
 
         // Unpack values
-        let acc_x: u32 = (raw_bytes[0] as u32) << 8 | raw_bytes[1] as u32;
-        let acc_y: u32 = (raw_bytes[2] as u32) << 8 | raw_bytes[3] as u32;
-        let acc_z: u32 = (raw_bytes[4] as u32) << 8 | raw_bytes[5] as u32;
+        let acc_x: i32 = (raw_bytes[0] as i32) << 8 | raw_bytes[1] as i32;
+        let acc_y: i32 = (raw_bytes[2] as i32) << 8 | raw_bytes[3] as i32;
+        let acc_z: i32 = (raw_bytes[4] as i32) << 8 | raw_bytes[5] as i32;
 
         // Display directional accelerations
         ufmt::uwriteln!(&mut serial, "x acc: {}\ny acc: {}\nz acc: {}\n", acc_x, acc_y, acc_z).void_unwrap();
