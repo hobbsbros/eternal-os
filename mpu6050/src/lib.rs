@@ -17,7 +17,7 @@ pub enum Mpu6050Error<E> {
 
 /// Methods available on the `Mpu6050` struct.
 impl<I, E> Mpu6050<I>
-    where I: embedded_hal::blocking::i2c::WriteRead<Error = E>
+    where I: embedded_hal::blocking::i2c::WriteRead<Error = E> + embedded_hal::blocking::i2c::Write<Error = E>
 {
     /// Creates a new instance of the Mpu6050 struct.
     pub fn new(i2c: I) -> Self {
@@ -56,6 +56,12 @@ impl<I, E> Mpu6050<I>
     /// This function does not require `unsafe` code.
     pub fn read_bytes(&mut self, register: u8, buffer: &mut [u8]) -> Result<(), Mpu6050Error<E>> {
         self.i2c.write_read(self.address, &[register], buffer)
+            .map_err(Mpu6050Error::I2c)?;
+        Ok(())
+    }
+
+    pub fn wake(&mut self) -> Result<(), Mpu6050Error<E>> {
+        self.i2c.write(self.address, &[MPU6050_RESET_REGISTER, 0x00])
             .map_err(Mpu6050Error::I2c)?;
         Ok(())
     }

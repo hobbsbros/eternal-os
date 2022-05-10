@@ -8,6 +8,7 @@ use mpu6050::{
     Mpu6050,
 };
 
+
 // Implementation of custom `core_unwrap` function for core::result::Result
 trait Unwrap<T, E> {
     fn unwrap(self) -> T;
@@ -104,6 +105,8 @@ fn main() -> ! {
 
     // Create an instance of the Mpu6050 struct to represent the accelerometer
     let mut mpu6050 = Mpu6050::new(i2c);
+    // Wake up the MPU6050
+    mpu6050.wake().unwrap();
 
     // let mut led = pins.d13.into_output();
 
