@@ -53,7 +53,7 @@ The `mpu6050` dependency is a fork of Julian Gaal's `mpu6050` package (https://g
 
 The package has been somewhat modified from its original form as available on GitHub.  `mpu6050` lists Rust's mathematics package `libm` as a dependency.  However, `libm` does not define constants for CPUs with 16-bit pointers.  See issue #250 on the GitHub repository `rust-lang/libm` for more information (https://github.com/rust-lang/libm/issues/250).
 
-The Git revision history of `mpu6050` has been removed in order to integrate it code with this repository.  Its README and LICENSE (MIT Software License) remain, and credit has been given below in *Thanks* as well as in `/LICENSE`.
+The Git revision history of `mpu6050` has been removed (i.e. it is not a submodule, it is fully a part of this repository) in order to integrate it code with this repository.  Users seeking its revision history may visit the `mpu6050` repository (https://github.com/rust-lang/libm) for further information.  Its README and LICENSE (MIT Software License) remain, and credit has been given below in *Thanks* as well as in `/LICENSE`.
 
 # Thanks
 
