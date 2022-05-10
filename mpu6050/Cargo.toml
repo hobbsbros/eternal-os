@@ -1,18 +1,10 @@
 [package]
 name = "mpu6050"
-version = "0.1.5"
-authors = ["Julian Gaal <gjulian@uos.de>"]
+version = "0.1.0"
+authors = ["Joseph Hobbs <josephrosshobbs@gmail.com>"]
 edition = "2018"
 
-description = "Platform agnostic driver for MPU6050 6-axis IMU"
-repository = "https://github.com/juliangaal/mpu6050"
-readme = "README.md"
-keywords = ["mpu6050", "imu", "embedded"]
-license = "MIT"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-embedded-hal = "0.2.4"
-
-[dev-dependencies]
-i2cdev = "0.4.4"
-linux-embedded-hal = "0.3.0"
+embedded-hal = "0.2.3"
