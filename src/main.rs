@@ -23,7 +23,27 @@ impl<T, E> Unwrap<T, E> for core::result::Result<T, E> {
 }
 
 
-// Custom panic handler
+/// Defines a custom panic handler for the eternalOS flight control software.
+/// 
+/// # Examples
+/// The following code will call the `panic` panic handler.
+/// ```no_run
+/// panic!();
+/// ```
+/// 
+/// # Attributes
+/// `panic` has the `#[panic_handler]` attribute, marking it as the program's panic handler.
+/// 
+/// # Panics
+/// This function never panics (as it is the panic handler).
+/// 
+/// # Errors
+/// This function returns no errors.
+/// 
+/// # Safety
+/// This function requires `unsafe` code to gain access to the Arduino HAL peripherals using the `arduino_hal::Peripherals::steal()` function.
+/// No invariants are required as the main firmware routine will never access the peripherals after the panic handler has been executed (because the main firmware has panicked).
+/// 
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
     // First steal access to the peripherals from `main`
@@ -34,8 +54,8 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     };
     let pins = arduino_hal::pins!(peripherals);
     
-    // Set up a serial connection to inform the user (in case they're plugged in)
-    // of the panic!
+    // Set up a serial connection to inform the user of the panic!
+    // This obviously assumes that the user is plugged in
     let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
 
     ufmt::uwriteln!(&mut serial, "eternalOS panic!").void_unwrap();
@@ -80,7 +100,7 @@ fn main() -> ! {
         50_000,
     );
 
-    // Program starts here
+    // Actual user program begins here
 
     // Create an instance of the Mpu6050 struct to represent the accelerometer
     let mut mpu6050 = Mpu6050::new(i2c);
