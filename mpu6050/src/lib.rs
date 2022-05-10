@@ -124,11 +124,11 @@ where
     }
 
     /// Wakes MPU6050 with all sensors enabled (default)
-    fn wake<D: DelayMs<u8>>(&mut self, delay: &mut D) -> Result<(), Mpu6050Error<E>> {
+    fn wake(&mut self, /*delay: &mut D*/) -> Result<(), Mpu6050Error<E>> {
         // MPU6050 has sleep enabled by default -> set bit 0 to wake
         // Set clock source to be PLL with x-axis gyroscope reference, bits 2:0 = 001 (See Register Map )
         self.write_byte(PWR_MGMT_1::ADDR, 0x01)?;
-        delay.delay_ms(100u8);
+        //delay.delay_ms(100u8);
         Ok(())
     }
 
@@ -152,8 +152,8 @@ where
     }
 
     /// Init wakes MPU6050 and verifies register addr, e.g. in i2c
-    pub fn init<D: DelayMs<u8>>(&mut self, delay: &mut D) -> Result<(), Mpu6050Error<E>> {
-        self.wake(delay)?;
+    pub fn init(&mut self) -> Result<(), Mpu6050Error<E>> {
+        self.wake()?;
         self.verify()?;
         self.set_accel_range(AccelRange::G2)?;
         self.set_gyro_range(GyroRange::D250)?;

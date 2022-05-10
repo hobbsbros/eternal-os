@@ -5,6 +5,21 @@
 
 use arduino_hal::prelude::*;
 
+
+// Implementation of custom `core_unwrap` function for core::result::Result
+trait CoreUnwrap {
+    fn core_unwrap(&mut self);
+}
+
+impl<T, E> CoreUnwrap for core::result::Result<T, E> {
+    fn core_unwrap(&mut self) {
+        if let Err(_) = self {
+            panic!()
+        }
+    }
+}
+
+
 // Custom panic handler
 #[panic_handler]
 fn panic(info: &core::panic::PanicInfo) -> ! {
@@ -40,6 +55,12 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     }
 }
 
+
+// Create variables for the MPU6050 IMU registers
+const RESET_REGISTER: u8 = 107;
+const ACCEL_REGISTER: u8 = 59;
+
+
 // Program entry point
 #[arduino_hal::entry]
 fn main() -> ! {
@@ -53,8 +74,7 @@ fn main() -> ! {
     let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
 
     // Set up an I2C connection
-    // #[allow(unused_variables)]
-    // #[allow(unused_mut)]
+    #[allow(unused_mut)]
     let mut i2c = arduino_hal::I2c::new(
         peripherals.TWI,
         pins.a4.into_pull_up_input(),
@@ -62,16 +82,30 @@ fn main() -> ! {
         50_000,
     );
 
-    
-
-    // Create a variable for the MPU6050 IMU
-    let mpu6050: u8 = 68;
-    
     // Program starts here
+
+    // Create an instance of the Mpu6050 struct to represent the accelerometer
+    let mut mpu6050 = mpu6050::Mpu6050::new(i2c);
+    // Initialize the MPU6050
+    mpu6050.init().core_unwrap();
+    arduino_hal::delay_ms(50);
 
     // let mut led = pins.d13.into_output();
 
-    loop {
+    let mut raw_bytes: [u8; 6] = [0u8; 6];
 
+    loop {
+        mpu6050.read_bytes(ACCEL_REGISTER, &mut raw_bytes).core_unwrap();
+
+        // Unpack values
+        let acc_x: i32 = (raw_bytes[0] as i32) << 8 | raw_bytes[1] as i32;
+        let acc_y: i32 = (raw_bytes[2] as i32) << 8 | raw_bytes[3] as i32;
+        let acc_z: i32 = (raw_bytes[4] as i32) << 8 | raw_bytes[5] as i32;
+
+        // Display directional accelerations
+        ufmt::uwriteln!(&mut serial, "x acc: {}\ny acc: {}\nz acc: {}\n", acc_x, acc_y, acc_z).void_unwrap();
+
+        arduino_hal::delay_ms(1000);
+        raw_bytes = [0; 6];
     }
 }
