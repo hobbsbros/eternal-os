@@ -8,7 +8,6 @@ use mpu6050::{
     Mpu6050,
 };
 
-
 // Implementation of custom `core_unwrap` function for core::result::Result
 trait Unwrap<T, E> {
     fn unwrap(self) -> T;
@@ -54,11 +53,14 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
         arduino_hal::Peripherals::steal()
     };
     let pins = arduino_hal::pins!(peripherals);
-    
+
+    // Note to developers: uncommenting the following block (to initiate a serial connection) will add 600 B to 700 B to the final compile
+
+    /*
     // Set up a serial connection to inform the user of the panic!
     // This obviously assumes that the user is plugged in
     let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
-
+    
     ufmt::uwriteln!(&mut serial, "eternalOS panic!").void_unwrap();
     if let Some(loc) = info.location() {
         ufmt::uwriteln!(
@@ -70,6 +72,7 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     } else {
         ufmt::uwriteln!(&mut serial, "Unable to determine panic location").void_unwrap();
     }
+    */
 
     // Blink the LED rapidly to alert the user to the error
     let mut led = pins.d13.into_output();
@@ -111,15 +114,14 @@ fn main() -> ! {
     // let mut led = pins.d13.into_output();
 
     loop {
-        // `read_accel` returns a Result<Accel, Mpu6050Error<E>>
-        let accel = mpu6050.read_accel();
+        let angles = mpu6050.read_angles().unwrap();
 
-        if let Ok(acc) = accel {
-            // Display directional accelerations
-            ufmt::uwriteln!(&mut serial, "x acc: {}\ny acc: {}\nz acc: {}\n", acc.x, acc.y, acc.z).void_unwrap();
-        } else {
-            panic!();
-        }
+        // Uncomment for debugging purposes only
+
+        // ufmt::uwriteln!(&mut serial, "roll: {} | pitch: {}\n", angles.roll, angles.pitch).void_unwrap();
+
+        // Note to developers: uncommenting this line of code will add several kilobytes to the final compile
+        // Doing so may overload the ATMega328P flash memory (32kB maximum)
 
         arduino_hal::delay_ms(1000);
     }

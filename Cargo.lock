@@ -103,10 +103,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "math"
+version = "0.1.0"
+
+[[package]]
 name = "mpu6050"
 version = "0.1.0"
 dependencies = [
  "embedded-hal",
+ "math",
 ]
 
 [[package]]
