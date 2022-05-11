@@ -4,10 +4,10 @@
 
 /// Defines an abstract control variable that can be controlled by PID control
 pub struct ControlVariable {
-    expected: i16,
-    actual: i16,
-    error: i16,
-    timestep: u8,
+    expected: f32,
+    actual: f32,
+    error: f32,
+    timestep: u16,
     proportion: f32,
     integral: f32,
     derivative: f32,
@@ -16,17 +16,17 @@ pub struct ControlVariable {
     kd: f32,
 }
 
-const DEFAULT_KP: f32 = 1.0;
-const DEFAULT_KI: f32 = 1.0;
-const DEFAULT_KD: f32 = 1.0;
+const DEFAULT_KP: f32 = 0.1;
+const DEFAULT_KI: f32 = 0.000_1;
+const DEFAULT_KD: f32 = 0.001;
 
 
 impl ControlVariable {
-    fn new(&mut self, expected: i16, timestep: u8) -> Self {
+    pub fn new(expected: f32, timestep: u16) -> Self {
         ControlVariable {
             expected: expected,
-            actual: 0i16,
-            error: 0i16,
+            actual: 0.0f32,
+            error: 0.0f32,
             timestep: timestep,
             proportion: 0.0f32,
             integral: 0.0f32,
@@ -37,13 +37,40 @@ impl ControlVariable {
         }
     }
 
-    /// Updates the error term
+    /// Updates the expected value of the control variable.
+    pub fn set_expected(&mut self, expected: f32) {
+        self.expected = expected;
+    }
+
+    /// Sets the proportional gain.
+    pub fn set_kp(&mut self, gain: f32) {
+        self.kp = gain;
+    }
+
+    /// Sets the integral gain.
+    pub fn set_ki(&mut self, gain: f32) {
+        self.ki = gain;
+    }
+
+    /// Sets the derivative gain.
+    pub fn set_kd(&mut self, gain: f32) {
+        self.kd = gain;
+    }
+
+    /// Sets all gains.
+    pub fn set_gains(&mut self, kp: f32, ki: f32, kd: f32) {
+        self.set_kp(kp);
+        self.set_ki(ki);
+        self.set_kd(kd);
+    }
+
+    /// Updates the error term.
     fn update_error(&mut self) {
         self.error = self.expected - self.actual;
     }
 
-    /// Update the PID control variable using the current (actual) value of the variable
-    fn step(&mut self, actual: i16) {
+    /// Updates the PID control variable using the current (actual) value of the variable.
+    pub fn step(&mut self, actual: f32) {
         let previous = self.error;
 
         // Set the actual value of the control variable
@@ -53,7 +80,7 @@ impl ControlVariable {
         self.update_error();
 
         // Set the proportional term
-        self.proportion = (self.error as f32)/(self.actual as f32);
+        self.proportion = self.error as f32;
 
         // Compute the integral of the error term
         self.integral += (self.error as f32) * (self.timestep as f32);
@@ -63,8 +90,8 @@ impl ControlVariable {
     }
 
     /// Returns the PID correction term (the amount by which to adjust the input to correct the output).
-    fn get_correction(&mut self) -> i16 {
+    pub fn get_correction(&mut self) -> f32 {
         let correction: f32 = self.kp*self.proportion + self.ki*self.integral + self.kd*self.derivative;
-        (correction as i16)
+        correction
     }
 }

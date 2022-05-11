@@ -117,19 +117,36 @@ fn main() -> ! {
     // Wake up the MPU6050
     mpu6050.wake().unwrap();
 
-    // let mut led = pins.d13.into_output();
+    // Define a timestep (in microseconds)
+    const TIMESTEP: u16 = 1000;
 
     loop {
         #[allow(unused_variables)]
         let angles = mpu6050.read_angles().unwrap();
 
+        let mut control_roll = ControlVariable::new(0.0f32, TIMESTEP);
+        let mut control_pitch = ControlVariable::new(0.0f32, TIMESTEP);
+
+        control_roll.step(angles.roll);
+        control_pitch.step(angles.pitch);
+
+        let roll_correction = control_roll.get_correction();
+        let pitch_correction = control_pitch.get_correction();
+
         // Uncomment for debugging purposes only
 
-        // ufmt::uwriteln!(&mut serial, "roll: {} | pitch: {}\n", angles.roll as i32, angles.pitch as i32).void_unwrap();
+        ufmt::uwriteln!(
+            &mut serial,
+            "roll: {} | correction: {} || pitch: {} | correction: {}\n",
+            angles.roll as i32,
+            roll_correction as i32,
+            angles.pitch as i32,
+            pitch_correction as i32,
+        ).void_unwrap();
 
-        // Note to developers: uncommenting the above line of code will add several kilobytes to the final compile
+        // Note to developers: uncommenting the above block of code will add several kilobytes to the final compiled binary
         // Doing so may overload the ATMega328P flash memory (32kB maximum)
 
-        arduino_hal::delay_ms(1000);
+        arduino_hal::delay_us(TIMESTEP as u32);
     }
 }
