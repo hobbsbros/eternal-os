@@ -9,6 +9,10 @@ use mpu6050::{
     Mpu6050,
 };
 
+use pid::{
+    ControlVariable,
+};
+
 // Implementation of custom `core_unwrap` function for core::result::Result
 trait Unwrap<T, E> {
     fn unwrap(self) -> T;
@@ -121,7 +125,7 @@ fn main() -> ! {
 
         // Uncomment for debugging purposes only
 
-        // ufmt::uwriteln!(&mut serial, "roll: {} | pitch: {}\n", angles.roll, angles.pitch).void_unwrap();
+        // ufmt::uwriteln!(&mut serial, "roll: {} | pitch: {}\n", angles.roll as i32, angles.pitch as i32).void_unwrap();
 
         // Note to developers: uncommenting the above line of code will add several kilobytes to the final compile
         // Doing so may overload the ATMega328P flash memory (32kB maximum)

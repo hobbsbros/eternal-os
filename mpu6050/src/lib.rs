@@ -48,8 +48,8 @@ pub const TO_DEGREES: f32 = 180.0 / PI;
 
 /// Defines a struct that can store the pitch and roll values (in minutes of arc) of the MPU6050 with respect to the IMU's default axes.
 pub struct Angles {
-    pub pitch: i32,
-    pub roll: i32,
+    pub pitch: f32,
+    pub roll: f32,
 }
 
 
@@ -137,8 +137,8 @@ impl<I, E> Mpu6050<I>
         // Return the angle values
         // Convert them first into degrees and then into minutes
         let angles = Angles {
-            pitch: (pitch*TO_DEGREES*60.0) as i32,
-            roll: (roll*TO_DEGREES*60.0) as i32,
+            pitch: (pitch*TO_DEGREES*60.0) as f32,
+            roll: (roll*TO_DEGREES*60.0) as f32,
         };
         Ok(angles)
     }
