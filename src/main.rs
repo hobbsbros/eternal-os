@@ -123,7 +123,7 @@ fn main() -> ! {
 
         // ufmt::uwriteln!(&mut serial, "roll: {} | pitch: {}\n", angles.roll, angles.pitch).void_unwrap();
 
-        // Note to developers: uncommenting this line of code will add several kilobytes to the final compile
+        // Note to developers: uncommenting the above line of code will add several kilobytes to the final compile
         // Doing so may overload the ATMega328P flash memory (32kB maximum)
 
         arduino_hal::delay_ms(1000);
