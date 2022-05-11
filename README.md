@@ -53,9 +53,9 @@ Thanks to GitHub user [Rahix](https://github.com/Rahix/) for [`avr-hal`](https:/
 
 Thanks to the [WinAVR project](http://winavr.sourceforge.net/) for the `avr-gcc` compiler.
 
-Thanks to Marius Greuel's [`avrdude`](https://github.com/mariusgreuel/avrdude) package that enables Windows machines to flash AVR processors.
+Thanks to [Marius Greuel](https://github.com/mariusgreuel)'s [`avrdude`](https://github.com/mariusgreuel/avrdude) package that enables Windows machines to flash AVR processors.
 
-Thanks to Julian Gaal's [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `/mpu6050` is based on his driver.
+Thanks to [Julian Gaal](https://github.com/juliangaal)'s [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `/mpu6050` is based on his driver.
 
 # License
 
