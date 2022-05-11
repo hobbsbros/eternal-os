@@ -3,6 +3,7 @@
 #![no_std]
 #![no_main]
 
+#[allow(unused_imports)]
 use arduino_hal::prelude::*;
 use mpu6050::{
     Mpu6050,
@@ -45,6 +46,7 @@ impl<T, E> Unwrap<T, E> for core::result::Result<T, E> {
 /// No invariants are required as the main firmware routine will never access the peripherals after the panic handler has been executed (because the main firmware has panicked).
 /// 
 #[panic_handler]
+#[allow(unused_variables)]
 fn panic(info: &core::panic::PanicInfo) -> ! {
     // First steal access to the peripherals from `main`
     // This is considered `unsafe` but because `main` will never
@@ -114,6 +116,7 @@ fn main() -> ! {
     // let mut led = pins.d13.into_output();
 
     loop {
+        #[allow(unused_variables)]
         let angles = mpu6050.read_angles().unwrap();
 
         // Uncomment for debugging purposes only
