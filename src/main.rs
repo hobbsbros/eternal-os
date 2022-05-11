@@ -120,20 +120,26 @@ fn main() -> ! {
     // Define a timestep (in microseconds)
     const TIMESTEP: u16 = 1000;
 
+    let mut control_roll = ControlVariable::new(0.0f32, TIMESTEP);
+    let mut control_pitch = ControlVariable::new(0.0f32, TIMESTEP);
+
+    control_pitch.set_expected(-600.0);
+
     loop {
         #[allow(unused_variables)]
         let angles = mpu6050.read_angles().unwrap();
 
-        let mut control_roll = ControlVariable::new(0.0f32, TIMESTEP);
-        let mut control_pitch = ControlVariable::new(0.0f32, TIMESTEP);
-
         control_roll.step(angles.roll);
         control_pitch.step(angles.pitch);
 
+        #[allow(unused_variables)]
         let roll_correction = control_roll.get_correction();
+        #[allow(unused_variables)]
         let pitch_correction = control_pitch.get_correction();
 
         // Uncomment for debugging purposes only
+
+        /*
 
         ufmt::uwriteln!(
             &mut serial,
@@ -143,6 +149,8 @@ fn main() -> ! {
             angles.pitch as i32,
             pitch_correction as i32,
         ).void_unwrap();
+
+        */
 
         // Note to developers: uncommenting the above block of code will add several kilobytes to the final compiled binary
         // Doing so may overload the ATMega328P flash memory (32kB maximum)

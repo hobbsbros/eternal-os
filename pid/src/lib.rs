@@ -17,8 +17,8 @@ pub struct ControlVariable {
 }
 
 const DEFAULT_KP: f32 = 0.1;
-const DEFAULT_KI: f32 = 0.000_1;
-const DEFAULT_KD: f32 = 0.001;
+const DEFAULT_KI: f32 = 0.000_001;
+const DEFAULT_KD: f32 = 0.000_1;
 
 
 impl ControlVariable {
