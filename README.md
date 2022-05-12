@@ -61,6 +61,6 @@ Thanks to [Julian Gaal](https://github.com/juliangaal)'s [`mpu6050`](https://git
 
 Per the [`avr-hal-template`](https://github.com/Rahix/avr-hal-template), this project is licensed under the MIT software license.  See `LICENSE` for more information.
 
-GitHub user `Rahix` (https://github.com/Rahix/) receives credit for `/Cargo.toml`, `/Cargo.lock`, `/rust-toolchain.toml`, `/.cargo/config.toml`, and all JSONs in the `/avr-specs` directory.
+GitHub user `Rahix` (https://github.com/Rahix/) receives credit for `Cargo.toml`, `Cargo.lock`, `rust-toolchain.toml`, `.cargo/config.toml`, and all JSONs in the `avr-specs` directory.
 
 All other work is intellectual property of Hobbs Bros. (copyright 2022).  Redistribution condition and warranty are covered in more detail in `LICENSE`, which enumerates the conditions on this software as per the MIT software license.

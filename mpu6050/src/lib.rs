@@ -140,6 +140,7 @@ impl<I, E> Mpu6050<I>
             pitch: (pitch*TO_DEGREES*60.0) as f32,
             roll: (roll*TO_DEGREES*60.0) as f32,
         };
+        
         Ok(angles)
     }
 }
