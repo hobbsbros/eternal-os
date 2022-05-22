@@ -3,7 +3,7 @@ name = "eternal-os"
 version = "0.1.0"
 authors = ["Joseph Hobbs <josephrosshobbs@gmail.com>"]
 edition = "2018"
-license = "MIT OR Apache-2.0"
+license = "MIT"
 
 [[bin]]
 name = "eternal-os"
