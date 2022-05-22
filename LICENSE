@@ -1,4 +1,6 @@
-/Cargo.toml, /rust-toolchain.toml, /.cargo/config.toml, /avr-specs/*.json -> Copyright 2019 Rahix
+MIT Software License
+
+Cargo.toml, rust-toolchain.toml, .cargo/config.toml, avr-specs/*.json -> Copyright 2019 Rahix
 
 All remaining software -> Copyright 2022 Hobbs Bros.
 

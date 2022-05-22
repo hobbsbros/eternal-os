@@ -53,14 +53,14 @@ Thanks to GitHub user [Rahix](https://github.com/Rahix/) for [`avr-hal`](https:/
 
 Thanks to the [WinAVR project](http://winavr.sourceforge.net/) for the `avr-gcc` compiler.
 
-Thanks to Marius Greuel's [`avrdude`](https://github.com/mariusgreuel/avrdude) package that enables Windows machines to flash AVR processors.
+Thanks to [Marius Greuel](https://github.com/mariusgreuel)'s [`avrdude`](https://github.com/mariusgreuel/avrdude) package that enables Windows machines to flash AVR processors.
 
-Thanks to Julian Gaal's [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `/mpu6050` is based on his driver.
+Thanks to [Julian Gaal](https://github.com/juliangaal)'s [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `/mpu6050` is based on his driver.
 
 # License
 
 Per the [`avr-hal-template`](https://github.com/Rahix/avr-hal-template), this project is licensed under the MIT software license.  See `LICENSE` for more information.
 
-GitHub user `Rahix` (https://github.com/Rahix/) receives credit for `/Cargo.toml`, `/Cargo.lock`, `/rust-toolchain.toml`, `/.cargo/config.toml`, and all JSONs in the `/avr-specs` directory.
+GitHub user `Rahix` (https://github.com/Rahix/) receives credit for `Cargo.toml`, `Cargo.lock`, `rust-toolchain.toml`, `.cargo/config.toml`, and all JSONs in the `avr-specs` directory.
 
 All other work is intellectual property of Hobbs Bros. (copyright 2022).  Redistribution condition and warranty are covered in more detail in `LICENSE`, which enumerates the conditions on this software as per the MIT software license.
