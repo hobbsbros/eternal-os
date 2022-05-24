@@ -15,9 +15,10 @@ bench = false
 ufmt = "0.1.0"
 nb = "0.1.2"
 embedded-hal = "0.2.3"
-mpu6050 = {path = "drivers/mpu6050"}
+drivers = {path = "drivers"}
 pid = {path = "pid"}
 remote-id = {path = "remote-id"}
+system = {path = "system"}
 
 [dependencies.arduino-hal]
 git = "https://github.com/rahix/avr-hal"
