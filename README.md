@@ -7,7 +7,7 @@ Flight control software for the Phoenix open-source quadcopter.
 
 This project does not currently actively support macOS users.  This does not mean that macOS users cannot use eternalOS; it does mean, however, that it may take some extra digging and configuring on your personal machine to get these packages to work.
 
-The eternalOS build process has been tested on Windows 11 and Ubuntu/WSL 2.
+The eternalOS build process has been tested successfully on Windows 11, Ubuntu/WSL 2, and Ubuntu 22.04 LTS.
 
 # Building eternalOS
 
@@ -35,7 +35,7 @@ I recommend using the WinAVR project (http://winavr.sourceforge.net/).  WinAVR h
 # Flashing eternalOS
 
 ## `ravedude`
-I highly recommend installing [`ravedude`](https://github.com/Rahix/avr-hal/tree/main/ravedude), which is a wrapper on `avrdude` (the programmer) that integrates AVR programming with Cargo.  With `ravedude` installed, all you have to do is type `cargo run` in the terminal in order to compile your program.  The build instructions that follow will focus on 
+I highly recommend installing [`ravedude`](https://github.com/Rahix/avr-hal/tree/main/ravedude), which is a wrapper on `avrdude` (the programmer) that integrates AVR programming with Cargo.  With `ravedude` installed, all you have to do is type `cargo run` in the terminal in order to compile your program and flash the flight controller.  The build instructions that follow will assume that the user has `ravedude` installed.
 
 ## For Linux Users
 Follow the installation instructions on the `ravedude` GitHub page (https://github.com/Rahix/avr-hal/tree/main/ravedude) up to `cargo install ravedude`.  There is no need to create a new project or modify eternalOS's `.cargo/config.toml` file.
