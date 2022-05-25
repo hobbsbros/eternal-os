@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 embedded-hal = "0.2.3"
 math = {path = "../math"}
+bitvec = {path = "../bitvec"}
