@@ -10,6 +10,8 @@
 #![no_std]
 #![no_main]
 
+use arduino_hal::prelude::*;
+
 // Custom panic handler
 #[panic_handler]
 fn panic(_info: &core::panic::PanicInfo) -> ! {
@@ -30,8 +32,8 @@ fn main() -> ! {
     // Create an I2C connection with a clock speed of 50 kHz
     let mut i2c = arduino_hal::I2c::new(
         peripherals.TWI,
-        pins.a4.into_pull_up_input(),
-        pins.a5.into_pull_up_input(),
+        pins.d20.into_pull_up_input(),
+        pins.d21.into_pull_up_input(),
         50_000,
     );
 
