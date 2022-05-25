@@ -154,7 +154,7 @@ fn main() -> ! {
         */
 
         // Note to developers: uncommenting the above block of code will add several kilobytes to the final compiled binary
-        // Doing so may overload the ATMega328P flash memory (32kB maximum)
+        // Doing so may overload the ATMega2560 flash memory (256kB maximum)
 
         arduino_hal::delay_us(TIMESTEP as u32);
     }
