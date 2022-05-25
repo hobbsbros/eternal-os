@@ -19,6 +19,7 @@ trait Unwrap<T, E> {
 }
 
 impl<T, E> Unwrap<T, E> for core::result::Result<T, E> {
+    #[inline(always)]
     fn unwrap(self) -> T {
         match self {
             Ok(t) => t,

@@ -19,6 +19,7 @@ drivers = {path = "drivers"}
 pid = {path = "pid"}
 remote-id = {path = "remote-id"}
 system = {path = "system"}
+radio = {path = "radio"}
 
 [dependencies.arduino-hal]
 git = "https://github.com/rahix/avr-hal"

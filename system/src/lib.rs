@@ -1,6 +1,25 @@
-// crate::subsystems
+//! Defines system information as used by the `radio` and `remote-id` crates.
 
 #![no_std]
+
+
+/// Holds UAS serial number information.
+///
+/// # Fields
+/// `bytes`: An array of 20 bytes indicating the ASCII encoding of the UAS's serial number.
+pub struct SerialNumber {
+    pub bytes: [u8; 20],
+}
+
+impl SerialNumber {
+    /// Constructs a new `SerialNumber` struct.
+    pub fn new(bytes: [u8; 20]) -> Self {
+        SerialNumber {
+            bytes: bytes,
+        }
+    }
+}
+
 
 /// Holds Remote ID broadcast timestamp information.
 /// 
@@ -17,6 +36,19 @@ pub struct Timestamp {
 }
 
 
+/// Holds position data (for a UAS or its control station).
+///
+/// # Fields
+/// `lat`: Latitude (positive indicates north, negative indicates south)
+/// `long`: Longitude (positive indicates east, negative indicates west)
+/// `alt`: Altitude above sea level
+pub struct Position {
+    pub lat: f32,
+    pub long: f32,
+    pub alt: u16,
+}
+
+
 /// Holds unmanned aerial system (UAS) velocity information.
 ///
 /// # Fields
@@ -30,41 +62,31 @@ pub struct Velocity {
 }
 
 
-/// Enumerates drone subsystems.
+/// Enumerates subsystem status codes.
 ///
 /// # Options
-/// `Propulsion`: propulsion subsystem
-/// `Radio`: radio transmission subsystem
-/// `RemoteID`: FAA-compliant Remote ID subsystem
-/// `Guidance`: positional guidance and PID control subsystems
-/// `Power`: electrical power subsystem
-#[repr(u8)]
-pub enum Subsystem {
-    Propulsion = 1,
-    Radio = 2,
-    RemoteID = 3,
-    Guidance = 4,
-    Power = 5,
-}
-
-
-/// Enumerates drone subsystem statuses.
-/// 
-/// `Ok`: Subsystem is operational.
-/// `Emergency`: Subsystem is in emergency.
-#[repr(u8)]
-pub enum SubsystemStatus {
-    Ok = 0,
-    Emergency = 255,
-}
-
-
-/// Enumerates drone status.
-///
 /// `Ok`: All systems are operational.
 /// `Emergency`: One or more subsystems are in emergency.
 #[repr(u8)]
-pub enum Status {
+pub enum StatusCode {
     Ok = 0,
     Emergency = 255,
+}
+
+
+/// Holds drone subsystem statuses.
+/// 
+/// # Fields
+/// `propulsion`: propulsion subsystem statrus
+/// `radio`: radio transmission subsystem status
+/// `remote_id`: FAA-compliant Remote ID subsystem status
+/// `guidance`: positional guidance and PID control subsystems status
+/// `power`: electrical power subsystem status
+#[allow(dead_code)]
+pub struct Status {
+    propulsion: StatusCode,
+    radio: StatusCode,
+    remote_id: StatusCode,
+    guidance: StatusCode,
+    power: StatusCode,
 }
