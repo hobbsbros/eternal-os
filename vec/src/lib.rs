@@ -9,7 +9,7 @@ pub enum MaybeUninit<T> {
 }
 
 
-/// Holds a bit,
+/// Holds a bit.
 #[derive(Copy, Clone)]
 #[repr(u8)]
 pub enum Bit {
@@ -76,21 +76,28 @@ impl<T, const N: usize> Vec<T, N> {
 #[allow(dead_code)]
 #[derive(Copy, Clone)]
 pub struct BitBlock {
-    data: Vec<MaybeUninit<Bit>, 11>,
-    error: Vec<MaybeUninit<Bit>, 5>,
+    data: Vec<Bit, 11>,
+    error: Vec<Bit, 5>,
 }
 
 impl BitBlock {
     /// Creates an empty `BitBlock` struct,  initializing all bits to `MaybeUninit::Uninit`.
     pub fn new() -> Self {
         Self {
-            data: Vec::<MaybeUninit<Bit>, 11>::new(),
-            error: Vec::<MaybeUninit<Bit>, 5>::new(),
+            data: Vec::<Bit, 11>::new(),
+            error: Vec::<Bit, 5>::new(),
         }
     }
 
+    /// Creates a `BitBlock` struct from 11 bits of data.  Error correction is computed here.
+    pub fn from(data: &Vec<Bit, 11>) -> Self {
+        // TODO: Implement error correction.
+
+        todo!();
+    }
+
     /// Returns a 16-bit `BitVector` containing the bits of this `BitBlock`.
-    pub fn read(&self) -> Vec<MaybeUninit<Bit>, 16> {
+    pub fn read(&self) -> Vec<Bit, 16> {
         todo!();
     }
 }

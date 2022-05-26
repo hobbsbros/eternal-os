@@ -1,7 +1,5 @@
 //! PID Control Library
 
-#![no_std]
-
 /// Defines an abstract control variable that can be controlled by PID control
 pub struct ControlVariable {
     expected: f32,

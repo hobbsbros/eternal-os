@@ -1,5 +1,5 @@
 [package]
-name = "pid"
+name = "sys"
 version = "0.1.0"
 authors = ["Joseph Hobbs <josephrosshobbs@gmail.com>"]
 edition = "2018"
@@ -7,3 +7,8 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[dependencies.arduino-hal]
+git = "https://github.com/rahix/avr-hal"
+rev = "f84c0dff774c2292bc932b670955165161ecc7d1"
+features = ["arduino-mega2560"]

@@ -10,7 +10,7 @@ use api::imu::{
 };
 #[allow(unused_imports)]
 use api::id::RemoteID;
-use pid::{
+use api::pid::{
     ControlVariable,
 };
 
