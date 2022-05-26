@@ -1,12 +1,10 @@
-//! Custom MPU6050 Driver Code for the open-source eternalOS flight control software.
+//! Custom MPU6050 driver code for the open-source eternalOS flight control software.
 //! This driver receives acceleration data from the MPU6050 6-axis accelerometer/gyroscope.
-
-#![no_std]
-
 
 use math::{
     arctan,
 };
+
 
 /// Defines an abstract object representing an MPU6050 unit.
 pub struct Mpu6050<I> {

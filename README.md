@@ -25,8 +25,9 @@ You will need to install the following packages:
 - `avr-libc`
 - `gcc-avr`
 - `pkg-config`
+- `libssl-dev`
 
-This is most easily done using the following command: `sudo apt install avr-libc gcc-avr pkg-config`
+This is most easily done using the following command: `sudo apt install avr-libc gcc-avr pkg-config libssl-dev`
 
 ## For Windows Users
 
