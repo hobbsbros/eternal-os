@@ -8,7 +8,8 @@ use arduino_hal::prelude::*;
 use api::imu::{
     Mpu6050,
 };
-
+#[allow(unused_imports)]
+use api::id::RemoteID;
 use pid::{
     ControlVariable,
 };

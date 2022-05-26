@@ -1,8 +1,5 @@
 //! Defines system information as used by the `radio` and `remote-id` crates.
 
-#![no_std]
-
-
 /// Holds UAS serial number information.
 ///
 /// # Fields

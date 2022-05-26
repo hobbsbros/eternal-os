@@ -1,8 +1,6 @@
 // crate::remote-id
 
-#![no_std]
-
-use system;
+use super::sys as system;
 
 /// Holds Remote ID information.
 pub struct RemoteID {
