@@ -5,7 +5,7 @@
 
 #[allow(unused_imports)]
 use arduino_hal::prelude::*;
-use drivers::mpu6050::{
+use api::imu::{
     Mpu6050,
 };
 

@@ -1,5 +1,5 @@
 [package]
-name = "drivers"
+name = "api"
 version = "0.1.0"
 authors = ["Joseph Hobbs <josephrosshobbs@gmail.com>"]
 edition = "2018"
@@ -7,6 +7,5 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-embedded-hal = "0.2.3"
 math = {path = "../math"}
-vec = {path = "../vec"}
+embedded-hal = "0.2.3"
