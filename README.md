@@ -42,7 +42,7 @@ I highly recommend installing [`ravedude`](https://github.com/Rahix/avr-hal/tree
 Follow the installation instructions on the `ravedude` GitHub page (https://github.com/Rahix/avr-hal/tree/main/ravedude) up to `cargo install ravedude`.  There is no need to create a new project or modify eternalOS's `.cargo/config.toml` file.
 
 ## For Windows Users
-WinAVR's distribution of `avrdude` is incompatible with the toolchains used to build this project.  To resolve this issue, I installed `avrdude` 7.0 from Marius Greuel's Windows `avrdude` GitHub repository (https://github.com/mariusgreuel/avrdude).  The proper installation can be found in the `/releases` directory of that repository.
+WinAVR's distribution of `avrdude` is incompatible with the toolchains used to build this project.  To resolve this issue, I installed `avrdude` 7.0 from Marius Greuel's Windows `avrdude` GitHub repository (https://github.com/mariusgreuel/avrdude).  The proper installation can be found in the `releases` directory of that repository.
 
 ## Flashing Your Flight Controller
 
@@ -56,7 +56,7 @@ Thanks to the [WinAVR project](http://winavr.sourceforge.net/) for the `avr-gcc`
 
 Thanks to [Marius Greuel](https://github.com/mariusgreuel)'s [`avrdude`](https://github.com/mariusgreuel/avrdude) package that enables Windows machines to flash AVR processors.
 
-Thanks to [Julian Gaal](https://github.com/juliangaal)'s [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `/mpu6050` is based on his driver.
+Thanks to [Julian Gaal](https://github.com/juliangaal)'s [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `mpu6050` is based on his driver.
 
 # License
 
