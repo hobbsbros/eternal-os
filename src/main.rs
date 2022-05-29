@@ -1,4 +1,4 @@
-// eternal-os::main
+//! Main code for the Phoenix flight controller.
 
 #![no_std]
 #![no_main]
