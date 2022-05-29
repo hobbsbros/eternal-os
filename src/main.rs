@@ -107,8 +107,8 @@ fn main() -> ! {
     #[allow(unused_mut)]
     let mut i2c = arduino_hal::I2c::new(
         peripherals.TWI,
-        pins.d20.into_pull_up_input(),
-        pins.d21.into_pull_up_input(),
+        pins.a4.into_pull_up_input(),
+        pins.a5.into_pull_up_input(),
         50_000,
     );
 
