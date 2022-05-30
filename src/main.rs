@@ -109,6 +109,11 @@ fn main() -> ! {
     #[cfg(feature = "arduino-uno")]
     let scl = pins.a5;
 
+    #[cfg(feature = "arduino-nano")]
+    let sda = pins.a4;
+    #[cfg(feature = "arduino-nano")]
+    let scl = pins.a5;
+
     #[cfg(feature = "arduino-mega2560")]
     let sda = pins.d20;
     #[cfg(feature = "arduino-mega2560")]

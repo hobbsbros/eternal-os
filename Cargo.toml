@@ -27,6 +27,7 @@ features = ["arduino-uno"]
 [features]
 default = ["arduino-uno"]
 arduino-uno = []
+arduino-nano = []
 arduino-mega2560 = []
 sparkfun-promicro = []
 
