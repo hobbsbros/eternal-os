@@ -25,7 +25,7 @@ features = ["arduino-uno"]
 
 # Configure the build for the target microcontroller
 [features]
-default = ["arduino-uno"]
+default = ["arduino-nano"]
 arduino-uno = []
 arduino-nano = []
 arduino-mega2560 = []
