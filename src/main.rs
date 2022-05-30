@@ -103,12 +103,28 @@ fn main() -> ! {
     #[allow(unused_mut)]
     let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
 
+    // Set SDA (serial data) and SCL (serial clock) lines based on target board
+    #[cfg(feature = "arduino-uno")]
+    let sda = pins.a4;
+    #[cfg(feature = "arduino-uno")]
+    let scl = pins.a5;
+
+    #[cfg(feature = "arduino-mega2560")]
+    let sda = pins.d20;
+    #[cfg(feature = "arduino-mega2560")]
+    let scl = pins.d21;
+
+    #[cfg(feature = "sparkfun-promicro")]
+    let sda = pins.d2;
+    #[cfg(feature = "sparkfun-promicro")]
+    let scl = pins.d3;
+
     // Set up an I2C connection
     #[allow(unused_mut)]
     let mut i2c = arduino_hal::I2c::new(
         peripherals.TWI,
-        pins.a4.into_pull_up_input(),
-        pins.a5.into_pull_up_input(),
+        sda.into_pull_up_input(),
+        scl.into_pull_up_input(),
         50_000,
     );
 

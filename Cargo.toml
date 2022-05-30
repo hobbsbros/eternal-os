@@ -23,6 +23,13 @@ git = "https://github.com/rahix/avr-hal"
 rev = "d0d2f243bd3e10b49f6a78d44839a6caa8be7d43"
 features = ["arduino-uno"]
 
+# Configure the build for the target microcontroller
+[features]
+default = ["arduino-uno"]
+arduino-uno = []
+arduino-mega2560 = []
+sparkfun-promicro = []
+
 # Configure the build for minimal size - AVRs have very little program memory
 [profile.dev]
 panic = "abort"
