@@ -17,14 +17,23 @@ use api::pid::{
 // Implementation of custom `core_unwrap` function for core::result::Result
 trait Unwrap<T, E> {
     fn unwrap(self) -> T;
+    fn unwrap_or(self, alt: T) -> T;
 }
 
 impl<T, E> Unwrap<T, E> for core::result::Result<T, E> {
-    #[inline(always)]
+    /// Provides a simple implementation for `Result::unwrap()`.
     fn unwrap(self) -> T {
         match self {
             Ok(t) => t,
             Err(_) => panic!(),
+        }
+    }
+
+    /// Provides a simple implementation for `Result::unwrap_or(alternative)`.
+    fn unwrap_or(self, alt: T) -> T {
+        match self {
+            Ok(t) => t,
+            Err(_) => alt,
         }
     }
 }
