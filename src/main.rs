@@ -91,7 +91,7 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
 }
 
 
-// Program entry point
+/// Provides an entry point for the program.
 #[arduino_hal::entry]
 fn main() -> ! {
     // Get pins using the arduino_hal `pins!` macro
@@ -103,26 +103,9 @@ fn main() -> ! {
     #[allow(unused_mut)]
     let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
 
-    // Set SDA (serial data) and SCL (serial clock) lines based on target board
-    #[cfg(feature = "arduino-uno")]
+    // Set SDA (serial data) and SCL (serial clock) lines
     let sda = pins.a4;
-    #[cfg(feature = "arduino-uno")]
     let scl = pins.a5;
-
-    #[cfg(feature = "arduino-nano")]
-    let sda = pins.a4;
-    #[cfg(feature = "arduino-nano")]
-    let scl = pins.a5;
-
-    #[cfg(feature = "arduino-mega2560")]
-    let sda = pins.d20;
-    #[cfg(feature = "arduino-mega2560")]
-    let scl = pins.d21;
-
-    #[cfg(feature = "sparkfun-promicro")]
-    let sda = pins.d2;
-    #[cfg(feature = "sparkfun-promicro")]
-    let scl = pins.d3;
 
     // Set up an I2C connection
     #[allow(unused_mut)]
@@ -176,7 +159,7 @@ fn main() -> ! {
         */
 
         // Note to developers: uncommenting the above block of code will add several kilobytes to the final compiled binary
-        // Doing so may overload the ATMega2560 flash memory (256kB maximum)
+        // Doing so may overload the ATMega328P flash memory (32kB maximum)
 
         arduino_hal::delay_us(TIMESTEP as u32);
     }

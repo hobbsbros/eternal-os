@@ -21,15 +21,7 @@ sys = {path = "sys"}
 [dependencies.arduino-hal]
 git = "https://github.com/rahix/avr-hal"
 rev = "d0d2f243bd3e10b49f6a78d44839a6caa8be7d43"
-features = ["arduino-uno"]
-
-# Configure the build for the target microcontroller
-[features]
-default = ["arduino-nano"]
-arduino-uno = []
-arduino-nano = []
-arduino-mega2560 = []
-sparkfun-promicro = []
+features = ["arduino-nano"]
 
 # Configure the build for minimal size - AVRs have very little program memory
 [profile.dev]
