@@ -2,7 +2,7 @@
 target = "avr-specs/avr-atmega328p.json"
 
 [target.'cfg(target_arch = "avr")']
-runner = "ravedude nano -cb 57600"
+runner = "/snap/arduino/61/hardware/tools/avr/bin/avrdude -C/snap/arduino/61/hardware/tools/avr/etc/avrdude.conf -v -patmega328p -carduino -P/dev/ttyUSB0 -b115200 -D -Uflash:w:~/phoenix/eternal-os/target/avr-atmega328p/release/eternal-os.elf:e"
 
 [unstable]
 build-std = ["core"]
