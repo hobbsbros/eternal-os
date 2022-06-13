@@ -73,6 +73,20 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
 
     // Note to developers: uncommenting the following block (to initiate a serial connection) will add 600 B to 700 B to the final compile
 
+    /*
+    ufmt::uwriteln!(&mut serial, "eternalOS panic!").void_unwrap();
+    if let Some(loc) = info.location() {
+        ufmt::uwriteln!(
+            &mut serial,
+            "Panic occurred in file `{}` at line number {}",
+            loc.file(),
+            loc.line()
+        ).void_unwrap();
+    } else {
+        ufmt::uwriteln!(&mut serial, "Unable to determine panic location").void_unwrap();
+    }
+    */
+
     
     // Set up a serial connection to inform the user of the panic!
     // This obviously assumes that the user is plugged in
@@ -83,18 +97,6 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     let mut led = pins.d13.into_output();
     loop {
 
-        ufmt::uwriteln!(&mut serial, "eternalOS panic!").void_unwrap();
-        if let Some(loc) = info.location() {
-            ufmt::uwriteln!(
-                &mut serial,
-                "Panic occurred in file `{}` at line number {}",
-                loc.file(),
-                loc.line()
-            ).void_unwrap();
-        } else {
-            ufmt::uwriteln!(&mut serial, "Unable to determine panic location").void_unwrap();
-        }
-        
         led.toggle();
         arduino_hal::delay_ms(100);
     }
@@ -107,13 +109,6 @@ fn main() -> ! {
     // Get pins using the arduino_hal `pins!` macro
     let peripherals = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(peripherals);
-
-    let mut led = pins.d13.into_output();
-
-    loop {
-        led.toggle();
-        arduino_hal::delay_ms(1000);
-    }
     
     // Set up a serial connection
     #[allow(unused_variables)]
