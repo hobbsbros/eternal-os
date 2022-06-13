@@ -19,6 +19,22 @@ Building eternalOS requires the following dependencies:
 
 These build instructions will focus on getting to a compiled `*.elf` file.  The *Flashing eternalOS* section below will focus on how to get the `*.elf` file onto the flight controller.
 
+Before building, **you will need to add the following to a new file called `.cargo/config.toml`**.
+
+```
+[build]
+    target = "avr-specs/avr-atmega328p.json"
+
+[target.'cfg(target_arch = "avr")']
+    runner = "ravedude nano -cb 57600"
+
+[unstable]
+build-std = ["core"]
+build-std-features = ["compiler-builtins-mangled-names"]
+```
+
+Due to driver issues, I had to modify my `.cargo/config.toml` file significantly and removed it from this repository for privacy reasons.
+
 ## For Linux Users
 
 You will need to install the following packages:
