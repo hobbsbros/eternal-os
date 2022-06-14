@@ -80,4 +80,6 @@ Per the [`avr-hal-template`](https://github.com/Rahix/avr-hal-template), this pr
 
 GitHub user `Rahix` (https://github.com/Rahix/) receives credit for `Cargo.toml`, `Cargo.lock`, `rust-toolchain.toml`, `.cargo/config.toml`, and all JSONs in the `avr-specs` directory.
 
+GitHub user `astro` (https://github.com/astro/) receives credit for all code in the `api/src/rf` directory.  It is a direct clone of https://github.com/astro/embedded-nrf24l01.
+
 All other work is intellectual property of Hobbs Bros. (copyright 2022).  Redistribution condition and warranty are covered in more detail in `LICENSE`, which enumerates the conditions on this software as per the MIT software license.

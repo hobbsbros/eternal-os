@@ -7,3 +7,5 @@ pub mod id;
 pub mod gps;
 pub mod rtc;
 pub mod pid;
+
+pub use embedded_nrf24l01 as rf;

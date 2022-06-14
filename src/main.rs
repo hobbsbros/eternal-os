@@ -10,6 +10,8 @@ use api::imu::{
 };
 #[allow(unused_imports)]
 use api::id::RemoteID;
+#[allow(unused_imports)]
+use api::rf;
 use api::pid::{
     ControlVariable,
 };
@@ -74,6 +76,12 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     // Note to developers: uncommenting the following block (to initiate a serial connection) will add 600 B to 700 B to the final compile
 
     /*
+
+    // Set up a serial connection to inform the user of the panic!
+    // This obviously assumes that the user is plugged in.
+    
+    let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
+    
     ufmt::uwriteln!(&mut serial, "eternalOS panic!").void_unwrap();
     if let Some(loc) = info.location() {
         ufmt::uwriteln!(
@@ -85,13 +93,8 @@ fn panic(info: &core::panic::PanicInfo) -> ! {
     } else {
         ufmt::uwriteln!(&mut serial, "Unable to determine panic location").void_unwrap();
     }
+    
     */
-
-    
-    // Set up a serial connection to inform the user of the panic!
-    // This obviously assumes that the user is plugged in
-    let mut serial = arduino_hal::default_serial!(peripherals, pins, 57600);
-    
 
     // Blink the LED rapidly to alert the user to the error
     let mut led = pins.d13.into_output();

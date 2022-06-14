@@ -5,6 +5,7 @@ name = "api"
 version = "0.1.0"
 dependencies = [
  "embedded-hal",
+ "embedded-nrf24l01",
  "math",
  "sys",
 ]
@@ -118,6 +119,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "bitfield"
+version = "0.13.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "46afbd2983a5d5a7bd740ccb198caf5b82f45c40c09c0eed36052d91cb92e719"
+
+[[package]]
 name = "cfg-if"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -137,6 +144,15 @@ checksum = "35949884794ad573cf46071e41c9b60efb0cb311e3ca01f7af807af1debc66ff"
 dependencies = [
  "nb 0.1.3",
  "void",
+]
+
+[[package]]
+name = "embedded-nrf24l01"
+version = "0.2.0"
+dependencies = [
+ "bitfield",
+ "embedded-hal",
+ "nb 0.1.3",
 ]
 
 [[package]]
