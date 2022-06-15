@@ -55,7 +55,7 @@ I recommend using the WinAVR project (http://winavr.sourceforge.net/).  WinAVR h
 I highly recommend installing [`ravedude`](https://github.com/Rahix/avr-hal/tree/main/ravedude), which is a wrapper on `avrdude` (the programmer) that integrates AVR programming with Cargo.  With `ravedude` installed, all you have to do is type `cargo run` in the terminal in order to compile your program and flash the flight controller.  The build instructions that follow will assume that the user has `ravedude` installed.
 
 ## For Linux Users
-Follow the installation instructions on the `ravedude` GitHub page (https://github.com/Rahix/avr-hal/tree/main/ravedude) up to `cargo install ravedude`.  There is no need to create a new project or modify eternalOS's `.cargo/config.toml` file.
+Follow the installation instructions on the `ravedude` GitHub page (https://github.com/Rahix/avr-hal/tree/main/ravedude) up to and including `cargo install ravedude`.  There is no need to create a new project.
 
 ## For Windows Users
 WinAVR's distribution of `avrdude` is incompatible with the toolchains used to build this project.  To resolve this issue, I installed `avrdude` 7.0 from Marius Greuel's Windows `avrdude` GitHub repository (https://github.com/mariusgreuel/avrdude).  The proper installation can be found in the `releases` directory of that repository.
