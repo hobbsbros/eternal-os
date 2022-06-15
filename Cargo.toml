@@ -7,7 +7,7 @@ license = "MIT"
 
 [[bin]]
 name = "eternal-os"
-path = "src/main.rs"
+path = "src/radio-rx.rs"
 test = false
 bench = false
 
