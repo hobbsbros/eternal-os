@@ -5,13 +5,15 @@
 
 #[allow(unused_imports)]
 use arduino_hal::prelude::*;
+use arduino_hal::spi::Settings;
+
 use api::imu::{
     Mpu6050,
 };
 #[allow(unused_imports)]
 use api::id::RemoteID;
 #[allow(unused_imports)]
-use api::rf;
+use api::rf::NRF24L01;
 use api::pid::{
     ControlVariable,
 };
@@ -138,13 +140,27 @@ fn main() -> ! {
     // Wake up the MPU6050
     mpu6050.wake().unwrap();
 
+    // Create an instance of the NRF24L01 struct to represent the radio transceiver
+    let ce = pins.d3.into_output();
+    let csn = pins.d4.into_output();
+    let (mut spi, _) = arduino_hal::Spi::new(
+        peripherals.SPI,
+        pins.d13.into_output(),
+        pins.d11.into_output(),
+        pins.d12.into_pull_up_input(),
+        pins.d10.into_output(),
+        Settings::default(),
+    );
+
+    let mut nrf24 = NRF24L01::new(ce, csn, spi).unwrap();
+
     // Define a timestep (in microseconds)
     const TIMESTEP: u16 = 1000;
 
     let mut control_roll = ControlVariable::new(0.0f32, TIMESTEP);
     let mut control_pitch = ControlVariable::new(0.0f32, TIMESTEP);
 
-    control_pitch.set_expected(-600.0);
+    control_pitch.set_expected(0.0);
 
     loop {
         #[allow(unused_variables)]
