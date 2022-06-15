@@ -74,6 +74,8 @@ Thanks to [Marius Greuel](https://github.com/mariusgreuel)'s [`avrdude`](https:/
 
 Thanks to [Julian Gaal](https://github.com/juliangaal)'s [`mpu6050`](https://github.com/juliangaal/mpu6050) package as much of the code in `mpu6050` is based on his driver.
 
+Thanks to [GitHub user `astro`](https://github.com/astro) for the [`embedded-nrf24l01`](https://github.com/astro/embedded-nrf24l01) driver in `api/src/rf`.
+
 # License
 
 Per the [`avr-hal-template`](https://github.com/Rahix/avr-hal-template), this project is licensed under the MIT software license.  See `LICENSE` for more information.
